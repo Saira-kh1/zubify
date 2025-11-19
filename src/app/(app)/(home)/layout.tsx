@@ -1,3 +1,6 @@
+
+
+
 import { Poppins } from "next/font/google";
 
 
@@ -20,7 +23,6 @@ const Layout = ({children}: Props) =>{
         <div className="flex-1 bg-[#F4F4F0]">
             {children}
         </div>
-        
         <Footer/>
         
         

@@ -1,7 +1,7 @@
 "use client"
 // bun packages
 import Link from "next/link";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { MenuIcon } from "lucide-react";
 //next font and navigation
 import { Poppins } from "next/font/google";
@@ -124,13 +124,6 @@ export const Navbar = () => {
                 </Button>
 
             </div>
-      
-
-
-
-
-
-
        </nav>
 
     )
