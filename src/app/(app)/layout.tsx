@@ -15,14 +15,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: Readonly<
+{
   children: React.ReactNode;
-}>) {
+}>
+) {
   return (
     <html lang="en">
       <body
-        className={`${dmSans.className}  antialiased`}
-      >
+        className={`${dmSans.className}  antialiased`}>
         {children}
       </body>
     </html>
