@@ -8,13 +8,14 @@ import { Button } from "@/components/ui/button";
 
 import { CategoryDropdown } from './category-dropdown';
 import { CategoriesSidebar } from './categories-sidebar';
-import { CustomCategory } from '../types';
+import { CategoriesGetManyOutput } from '@/modules/categories/types';
+
 
 
 
 
 interface Props {
-    data : CustomCategory[];
+    data : CategoriesGetManyOutput;
 };
 
 
@@ -70,7 +71,7 @@ export const Categories = ({ data }: Props) => {
 <div className='relative w-full'>
 
     {/* {Categories sidebar} */}
-    <CategoriesSidebar open={isSidebarOpen} onOpenChange = {setIsSidebarOpen} data={data}/>
+    <CategoriesSidebar open={isSidebarOpen} onOpenChange = {setIsSidebarOpen} />
 
 
 
