@@ -3,12 +3,13 @@ import z from "zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import {toast } from "sonner";
-
+import { useTRPC } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { cn } from "@/lib/utils";
-import { useTRPC } from "@/trpc/client"
+
+
 //next font and navigation
 import { Poppins } from "next/font/google";
 
@@ -40,15 +41,17 @@ const poppins = Poppins({
 export const SignInView = () => {
     const router  = useRouter();
 
-
+    const queryClient = useQueryClient();
     const trpc = useTRPC();
     const login = useMutation(trpc.auth.login.mutationOptions({
+        
         onError: (error) =>{
             toast.error(error.message);
         },
-        onSuccess: ()=>{
+        onSuccess: async ()=>{
+           await queryClient.invalidateQueries(trpc.auth.session.queryFilter())
             router.push("/");
-        }
+        },
     }));
 
     const form = useForm<z.infer<typeof loginSchema>>({
