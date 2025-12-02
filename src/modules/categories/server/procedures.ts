@@ -29,12 +29,6 @@ export const categoriesRouter = createTRPCRouter({
       subcategories: undefined,
       }))
     }));
-
-
-
-
-
-
     return formattedData
  }),
-})
+});
