@@ -16,6 +16,7 @@ import { CategoriesGetManyOutput } from "@/modules/categories/types";
 
 
 interface Props{
+    
     open :boolean;
     onOpenChange: (open: boolean) => void;
     
@@ -38,7 +39,7 @@ export const CategoriesSidebar = ({
 
 
 
-//if we have custom categories, show those, otherwise show root categories
+//if we have parent categories, show those, otherwise show root categories
  const currentCategories = parentCategories ?? data ?? [];
 
  const handleOpenChange = (open : boolean) =>{

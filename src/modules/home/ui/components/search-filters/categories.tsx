@@ -102,7 +102,9 @@ export const Categories = ({ data }: Props) => {
     ref = {containerRef}
     className='flex flex-nowrap items-center'
     onMouseEnter={() => setIsAnyHovered(true)}
-    onMouseLeave={() => setIsAnyHovered(false)}>
+    onMouseLeave={() => setIsAnyHovered(false)}
+    >
+       {/*TODO: Hardcoded "All" button */}
         {data.slice(0 , visibleCount).map((category) =>(
             <div key={category.id}>
             <CategoryDropdown 
@@ -116,7 +118,7 @@ export const Categories = ({ data }: Props) => {
         <Button 
         variant="elevated"
         className={cn(
-                    "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-white hover:border-primary text-black",
+            "h-11 px-4 bg-transparent border-transparent rounded-full hover:bg-white hover:border-primary text-black",
                     isActiveCategoryHidden && !isAnyHovered && "bg-white border-primary",
                     )}
                     onClick={() => setIsSidebarOpen(true)}
