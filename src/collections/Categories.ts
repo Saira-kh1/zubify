@@ -6,6 +6,7 @@ export const Categories: CollectionConfig = {
     admin: {
         useAsTitle: "name",
     },
+    
     fields :[
         {
             name : "name",
@@ -25,6 +26,7 @@ export const Categories: CollectionConfig = {
             type  : "text",
 
         },
+       
         {
             name : "parent",
             type  : "relationship",
