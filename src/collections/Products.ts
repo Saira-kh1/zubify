@@ -4,6 +4,7 @@ import type { CollectionConfig } from "payload";
 
  export const Products : CollectionConfig = {
     slug : "products",
+    
     fields : [
         {
             name : "name",
@@ -29,6 +30,12 @@ import type { CollectionConfig } from "payload";
             type  : "relationship",
             relationTo : "categories",
             hasMany : false,
+        },
+         {
+            name  : "tags",
+            type  : "relationship",
+            relationTo : "tags",
+            hasMany : true,
         },
         {
             name: "image",

@@ -27,9 +27,9 @@ export const Categories = ({ data }: Props) => {
 
     const containerRef  = useRef<HTMLDivElement>(null);
     const measureRef  = useRef<HTMLDivElement>(null);
-    const veiwAllRef  = useRef<HTMLDivElement>(null);
+    const viewAllRef  = useRef<HTMLDivElement>(null);
 
-    const [visibleCount , setVisiableCount] = useState(data.length);
+    const [visibleCount , setVisibleCount] = useState(data.length);
     const [isAnyHovered , setIsAnyHovered] = useState(false);
     const [isSidebarOpen , setIsSidebarOpen] = useState(false)
     
@@ -42,10 +42,10 @@ export const Categories = ({ data }: Props) => {
 
     useEffect(() =>{
         const calculateVisible = () => {
-            if(!containerRef.current || !measureRef.current || !veiwAllRef.current) return;
+            if(!containerRef.current || !measureRef.current || !viewAllRef.current) return;
 
             const containerWidth = containerRef.current.offsetWidth;
-            const viewAllWidth = veiwAllRef.current.offsetWidth;
+            const viewAllWidth = viewAllRef.current.offsetWidth;
             const availableWidth = containerWidth - viewAllWidth;
 
             const items = Array.from(measureRef.current.children);
@@ -60,7 +60,7 @@ export const Categories = ({ data }: Props) => {
                 visible++;
             }
 
-            setVisiableCount(visible);
+            setVisibleCount(visible);
         };
 
         const resizeObserver = new ResizeObserver(calculateVisible);
@@ -83,7 +83,7 @@ export const Categories = ({ data }: Props) => {
 
     {/* {Hidden div to measure all items } */}
     <div ref={measureRef}
-    className='abosulte opacity-0 pointer-events-none flex'
+    className='absolute opacity-0 pointer-events-none flex'
     style={{ position: "fixed" , top: -9999 , left: -9999 }}>
      
         {data.map((category) =>(
@@ -113,7 +113,7 @@ export const Categories = ({ data }: Props) => {
             isNavigationhovered={isAnyHovered}  />
             </div>
         ))}
-        <div ref={veiwAllRef} className='shrink-0'>
+        <div ref={viewAllRef} className='shrink-0'>
             
         <Button 
         variant="elevated"

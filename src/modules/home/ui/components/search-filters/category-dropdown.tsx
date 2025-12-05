@@ -43,6 +43,10 @@ export const CategoryDropdown =({
 
         //   }
         // }
+        const sortedSubcategories = category.subcategories
+  ? [...category.subcategories].sort((a, b) => a.name.localeCompare(b.name))
+  : [];
+
 
 
         return (
@@ -81,7 +85,7 @@ export const CategoryDropdown =({
           )}
             </div>
           <SubcategoryMenu
-          category={category}
+          category={{ ...category, subcategories: sortedSubcategories }}
           isOpen = {isOpen}
           position = {dropdownPostion}
 
