@@ -2,9 +2,7 @@
 "use client";
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Category } from '@/payload-types';
 import { useRef, useState } from 'react';
-import { useDropdownPosition } from './use-dropdown-position';
 import { SubcategoryMenu } from './subcategory-menu';
 
 import  Link  from "next/link";
@@ -22,7 +20,6 @@ export const CategoryDropdown =({
     : Props) =>{
         const [isOpen , setIsOpen] = useState(false);
         const dropdownRef = useRef<HTMLDivElement>(null);
-        const { getDropdownPostion } = useDropdownPosition(dropdownRef);
 
 
 
@@ -34,7 +31,6 @@ export const CategoryDropdown =({
         
         const onMouseLeave = () => setIsOpen(false);
 
-        const dropdownPostion = getDropdownPostion();
 
         //  TODO: potentionally improve mobile
         // const toggleDropdown = () => {
@@ -87,7 +83,6 @@ export const CategoryDropdown =({
           <SubcategoryMenu
           category={{ ...category, subcategories: sortedSubcategories }}
           isOpen = {isOpen}
-          position = {dropdownPostion}
 
           
           />  
