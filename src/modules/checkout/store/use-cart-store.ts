@@ -3,7 +3,7 @@ import {createJSONStorage, persist } from 'zustand/middleware';
 
 
 interface TenantCart {
-    productIds: String[];
+    productIds: string[];
 
 };
 
@@ -13,7 +13,7 @@ interface CartState {
     removeProduct: (tenantSlug: string, productId: string) => void;
     clearCart: (tenantSlug: string) => void;
     clearAllCarts: () => void;
-    getCartByTenant: (tenantSlug: string) => String[];
+    getCartByTenant: (tenantSlug: string) => string[];
 };
 
 
