@@ -10,7 +10,6 @@ import { TRPCError } from "@trpc/server";
 import { Tenant } from "@/payload-types";
 import Stripe from "stripe";
 import { CheckoutMetadata, ProductMetaData } from "../types";
-import { generateTenantURL } from "@/lib/utils";
 
 
 

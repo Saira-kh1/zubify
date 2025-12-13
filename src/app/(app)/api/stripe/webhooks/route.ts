@@ -5,7 +5,6 @@ import { NextResponse } from 'next/server';
 
 import { stripe } from '@/lib/stripe';
 import { ExpandedLineItem } from '@/modules/checkout/types';
-import { de } from 'date-fns/locale';
 
 export async function POST(req: Request) {
     let event : Stripe.Event;
@@ -19,7 +18,6 @@ export async function POST(req: Request) {
         );
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        console.error('Error verifying Stripe webhook signature:', errorMessage);
 
         if(error! instanceof Error) {
             console.log(error);
@@ -37,7 +35,7 @@ export async function POST(req: Request) {
 
 
     const permittedEvents: string[] =[
-        "checkout.session.completed" ,
+        "checkout.session.completed",
     ];
 
 
@@ -73,7 +71,7 @@ export async function POST(req: Request) {
 
                     if(
                         !expandedSession.line_items?.data ||
-                        expandedSession.line_items.data.length 
+                        !expandedSession.line_items.data.length 
                     ){
                         throw new Error("No line items found");
                     }
@@ -87,13 +85,13 @@ export async function POST(req: Request) {
                                 stripeCheckoutSessionId: data.id,
                                 user: user.id,
                                 product: item.price.product.metadata.id,
-                                name: item.price.product.name,
+                                name: item.price.product.metadata.name,
                             },
                         });
                     }
                     break;
                     default:
-                        throw new Error(`Unhandled event type: ${event.type}`);
+                        throw new Error(`Unhandled event: ${event.type}`);
             }
         } catch (error){
             console.log(error)
