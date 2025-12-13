@@ -71,6 +71,7 @@
     "recharts": "latest",
     "server-only": "latest",
     "sonner": "latest",
+    "stripe": "^20.0.0",
     "superjson": "latest",
     "tailwind-merge": "latest",
     "vaul": "latest",
