@@ -1,7 +1,6 @@
 import { isSuperAdmin } from "@/lib/access";
 import type { CollectionConfig } from "payload";
 import { Tenant } from "@/payload-types"
-import { textarea } from "payload/shared";
  
 
 
@@ -19,6 +18,7 @@ import { textarea } from "payload/shared";
     },
     admin:{
         useAsTitle : "name",
+        description: "You must verify your account before creating products"
     },
     
     fields : [

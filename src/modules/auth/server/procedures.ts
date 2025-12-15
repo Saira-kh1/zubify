@@ -6,6 +6,7 @@ import { headers as getHeaders } from "next/headers"
 import { baseProcedure,createTRPCRouter} from "@/trpc/init"
 
 import { generateAuthCookies } from "../utils";
+import { stripe } from "@/lib/stripe"
 
 
 
@@ -37,7 +38,16 @@ export const authRouter = createTRPCRouter({
         if(existingUser) {
             throw new TRPCError({
                 code: "BAD_REQUEST",
-                message: "Username already taken"
+                message: "Username already taken",
+            });
+        }
+
+        const account = await stripe.accounts.create({});
+
+        if(!account){
+            throw new TRPCError({
+                code: "BAD_REQUEST",
+                message: "Failed to create Stripe account",
             });
         }
 
@@ -47,7 +57,7 @@ export const authRouter = createTRPCRouter({
             data: {
                 name: input.username,
                 slug: input.username,
-                stripeAccountId: "test",
+                stripeAccountId: account.id,
             }
         })
 
