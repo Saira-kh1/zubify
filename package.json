@@ -58,7 +58,7 @@
     "embla-carousel-react": "latest",
     "graphql": "latest",
     "input-otp": "latest",
-    "lucide-react": "latest",
+    "lucide-react": "^0.561.0",
     "next": "16.0.4",
     "next-themes": "latest",
     "nuqs": "latest",
@@ -68,7 +68,7 @@
     "react-dom": "19.2.0",
     "react-hook-form": "latest",
     "react-resizable-panels": "latest",
-    "recharts": "latest",
+    "recharts": "2.15.4",
     "server-only": "latest",
     "sonner": "latest",
     "stripe": "^20.0.0",
@@ -80,15 +80,17 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "latest",
+    "@types/bun": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "babel-plugin-react-compiler": "latest",
+    "baseline-browser-mapping": "^2.9.7",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "ignore-loader": "^0.1.2",
     "tailwindcss": "latest",
     "tw-animate-css": "latest",
-    "typescript": "latest",
-    "@types/bun": "latest"
+    "typescript": "latest"
   }
 }
