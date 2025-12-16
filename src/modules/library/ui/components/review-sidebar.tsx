@@ -19,8 +19,6 @@ export const ReviewSideBar = ({ productId } : Props) => {
       <ReviewForm
       productId = { productId }
       initialData = {data}
-      
-      
       />
     )
 }

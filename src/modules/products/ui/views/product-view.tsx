@@ -1,6 +1,7 @@
 "use client";
 
 import { formatCurrency, generateTenantURL } from "@/lib/utils";
+import { defaultJSXConverters, RichText} from "@payloadcms/richtext-lexical/react"
 
 import { toast } from "sonner";
 import dynamic from "next/dynamic";
@@ -35,7 +36,8 @@ interface ProductViewProps {
 export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
   const trpc = useTRPC();
   const { data } = useSuspenseQuery(
-    trpc.products.getOne.queryOptions({ id: productId }));
+    trpc.products.getOne.queryOptions({ id: productId })
+  );
 
   const [isCopied, setIsCopied] = useState(false);
 
@@ -85,21 +87,28 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
 
               <div className="hidden lg:flex px-6 py-6 items-center justify-center">
                 <div className="flex items-center gap-2">
-                  <StarRating rating={data.reviewRating} iconClassName="size-4" />
-                  <p className="text-base font-medium">{data.reviewCount} ratings</p>
+                  <StarRating
+                    rating={data.reviewRating}
+                    iconClassName="size-4"
+                  />
+                  <p className="text-base font-medium">
+                    {data.reviewCount} ratings
+                  </p>
                 </div>
               </div>
             </div>
             <div className="block lg:hidden px-6 py-4 items-center justify-center border-b">
               <div className="flex items-center gap-2">
                 <StarRating rating={data.reviewRating} iconClassName="size-4" />
-                <p className="text-base font-medium">{data.reviewCount} ratings</p>
+                <p className="text-base font-medium">
+                  {data.reviewCount} ratings
+                </p>
               </div>
             </div>
 
             <div className="p-6">
               {data.description ? (
-                <p>{data.description}</p>
+                <RichText data={data.description} converters={defaultJSXConverters} />
               ) : (
                 <p className="font-medium text-muted-foreground italic">
                   No description provided
@@ -112,19 +121,19 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
             <div className="border-t lg:border-t-0 lg:border-l h-full">
               <div className="flex flex-col gap-4 p-6 border-b">
                 <div className="flex flex-row items-center gap-2">
-                    <CartButton
+                  <CartButton
                     isPurchased={data.isPurchased}
-                     productId={productId} 
-                     tenantSlug={tenantSlug} />
-                  
+                    productId={productId}
+                    tenantSlug={tenantSlug}
+                  />
 
                   <Button
                     className="size-12"
                     variant="elevated"
                     onClick={() => {
-                      setIsCopied(true)
+                      setIsCopied(true);
                       navigator.clipboard.writeText(window.location.href);
-                      toast.success("URL Copied to clipboard")
+                      toast.success("URL Copied to clipboard");
 
                       setTimeout(() => {
                         setIsCopied(false);
@@ -132,7 +141,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                     }}
                     disabled={isCopied}
                   >
-                   {isCopied ? <CheckIcon /> : <LinkIcon /> }
+                    {isCopied ? <CheckIcon /> : <LinkIcon />}
                   </Button>
                 </div>
                 <p className="text-center font-medium">
@@ -156,14 +165,36 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
                       <div className="font-medium">
                         {stars} {stars === 1 ? "star" : "stars"}
                       </div>
-                      <Progress value={data.ratingDistribution[stars]} className="h-[1lh]" />
-                      <div className="font-meduim">{data.ratingDistribution[stars]}%</div>
+                      <Progress
+                        value={data.ratingDistribution[stars]}
+                        className="h-[1lh]"
+                      />
+                      <div className="font-meduim">
+                        {data.ratingDistribution[stars]}%
+                      </div>
                     </Fragment>
                   ))}
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ProductViewSkeleton = () => {
+  return (
+    <div className="px-4 lg:px-12 py-10">
+      <div className="border rounded-sm bg-white overflow-hidden">
+        <div className="relative aspect-[3.9] border-b">
+          <Image
+            src={"/placeholder.png"}
+            alt="placeholder"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
     </div>

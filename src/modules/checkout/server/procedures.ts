@@ -11,6 +11,7 @@ import { Tenant } from "@/payload-types";
 import Stripe from "stripe";
 import { CheckoutMetadata, ProductMetaData } from "../types";
 import { PLATFORM_FEE_PERCENTAGE } from "@/constants";
+import { tr } from "date-fns/locale";
 
 
 
@@ -84,6 +85,11 @@ export const checkoutRouter = createTRPCRouter({
           "tenant.slug": {
             equals: input.tenantSlug
           }
+        },
+        {
+          isArchived: {
+            not_equals: true,
+          },
         }
         ]
       }
@@ -181,11 +187,20 @@ export const checkoutRouter = createTRPCRouter({
       collection: "products",
       depth: 2,
       where: {
-        id: {
-          in: input.ids,
+        and:[
+          {
+          id: {
+            in: input.ids,
+          },
         },
-      },
-     });
+        {
+          isArchived: {
+            not_equals: true,
+          },
+        }, 
+      ],
+    },
+  });
 
      if( data.totalDocs !== input.ids.length) {
       throw new TRPCError( { code : "NOT_FOUND", message: "Products not found"});
