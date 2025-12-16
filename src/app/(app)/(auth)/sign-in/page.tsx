@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 
 
 import { caller }  from "@/trpc/server"
+export const dynamic = "force-dynamic";
 
 const Page = async () => {
 
