@@ -13,8 +13,8 @@ import { Tenant } from "@/payload-types"
             const tenant = req.user?.tenants?.[0]?.tenant as Tenant;
 
             return Boolean(tenant?.stripeDetailsSubmitted);
-        }
-
+        },
+     delete: ({ req }) => isSuperAdmin(req.user),
     },
     admin:{
         useAsTitle : "name",
@@ -29,7 +29,7 @@ import { Tenant } from "@/payload-types"
         },
         {
             name : "description",
-            type: "text",
+            type: "richText",
 
 
         },
@@ -72,10 +72,28 @@ import { Tenant } from "@/payload-types"
         {
             name: "content",
             // TODO: Change to RichText
-            type: "textarea",
+            type: "richText",
             admin: {
                 description:
                 "Protected content only visible to customer after purchase. Add product documentation, downloadable files , getting started guides and bonus materials. Supports Markdown formatting"
+            },
+        },
+        {
+            name: "isPrivate",
+            label: "Private",
+            defaultValue: false,
+            type: "checkbox",
+            admin: {
+                description: "if checked, this product will not be shown on the public storefront"
+            },
+        },
+        {
+            name: "isArchived",
+            label: "Archive",
+            defaultValue: false,
+            type: "checkbox",
+            admin: {
+                description: "if checked, this product will be archived"
             },
         },
     ],
