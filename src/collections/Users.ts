@@ -1,7 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { tenantsArrayField } from "@payloadcms/plugin-multi-tenant/fields"
 import { isSuperAdmin } from '@/lib/access';
-import { is } from 'zod/v4/locales';
 
 const defaultTenantArrayField = tenantsArrayField({
   tenantsArrayFieldName: "tenants",
