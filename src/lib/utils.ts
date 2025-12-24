@@ -9,20 +9,20 @@ export function cn(...inputs: ClassValue[]) {
 
 export function generateTenantURL(tenantSlug: string) {
  //use normal routing In development mode
-  // if (process.env.NODE_ENV === "development") {
-  //     return `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${tenantSlug}`;
-  //   }
+  if (process.env.NODE_ENV === "development") {
+      return `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${tenantSlug}`;
+    }
 
 
-    let protocol = "https";
+    const protocol = "https";
     const domain = process.env.NEXT_PUBLIC_ROOT_DOMAIN!;
 
-    if (process.env.NODE_ENV === "development"){
-      protocol = "http";
-    } //http://sairah.localhost:3000/products/6941176970c233b562d728fc
+    // if (process.env.NODE_ENV === "development"){
+    //   protocol = "http";
+    // } //http://sairah.localhost:3000/products/6941176970c233b562d728fc
 
       //https://saira.zubify.com
-      // use subdomain routing In production mode
+      // use subdomain routing In production mode 
   return `${protocol}://${tenantSlug}.${domain}`;
 }
 
