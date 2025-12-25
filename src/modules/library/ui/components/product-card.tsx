@@ -36,7 +36,7 @@ export const ProductCard = ({
                     <Image
                         alt={name}
                         fill
-                        src={imageUrl || "/placeholder.png"}
+                        src={imageUrl || "C:\Users\Saira\zubify\public\placeholder.png"}
                         className="object-cover"
                     />
 
