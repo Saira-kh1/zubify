@@ -17,7 +17,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     // "moduleResolution": "node",   // 👈 change this
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
@@ -40,7 +40,7 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "node_modules/payload"   // 👈 add this
+    "node_modules/payload" // 👈 add this
   ],
   "exclude": [
     "node_modules"
