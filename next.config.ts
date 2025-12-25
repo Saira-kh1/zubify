@@ -15,7 +15,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  reactCompiler: false,
+  reactCompiler: true,
   
   // MOVED TO TOP LEVEL (not in experimental anymore)
   serverExternalPackages: ['pino', 'thread-stream'],
